@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 import category_encoders as ce
 # load data
-data = pd.read_csv("D:\streamlit\data_final_clean.csv")
+data = pd.read_csv("https://github.com/thq-quan/wep_app_predict/blob/main/data_final_clean.csv")
 X = data.drop(['is_paid'], axis=1)
 y = data['is_paid']
 ## biến đổi kiểu dữ liệu 

@@ -2,7 +2,7 @@
 import numpy as np
 import streamlit as st
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
 import category_encoders as ce
 # load data
 data = pd.read_csv('https://raw.githubusercontent.com/thq-quan/wep_app_predict/main/data_final_clean.csv')
@@ -12,8 +12,8 @@ y = data['is_paid']
 encoder = ce.OrdinalEncoder(cols=['region','language','package'])
 X_model = encoder.fit_transform(X)
 #
-id3 = DecisionTreeClassifier(criterion="entropy")
-id3.fit(X_model,y)
+lr = LogisticRegression()
+lr.fit(X_model,y)
 # title
 st.write("""
 # Prediction App for user iRender
@@ -55,8 +55,8 @@ st.write(df)
 # biến đổi dữ mà ng dùng nhập
 df = encoder.transform(df)
 # hàm dự đoán và tỷ lệ giữa 2 lớp
-prediction = id3.predict(df)
-prediction_proba = id3.predict_proba(df)
+prediction = lr.predict(df)
+prediction_proba = lr.predict_proba(df)
 # show dự đoán của mô hình
 st.subheader('Prediction')
 paid = np.array(['free','paid'])
